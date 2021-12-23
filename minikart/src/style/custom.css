@@ -1,0 +1,60 @@
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+}
+.sidebar {
+  flex-grow: 0 0 auto;
+  width: 20%;
+  padding: 10px;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+}
+.sidebar-component {
+  position: relative;
+  height: 100%;
+}
+.close-sidebar {
+  position: absolute;
+  content: "<";
+  color: white;
+  bottom: 10%;
+  right: 0%;
+  cursor: pointer;
+}
+
+.sidebar-nav-link {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 0.8rem;
+}
+.sidebar-nav-link:hover {
+  color: white;
+  background-color: crimson;
+  transition: 0.2s ease-in-out;
+}
+
+.content {
+  flex-grow: 1;
+}
+/* login.css */
+.login {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* header */
+.header {
+  height: 10vh;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
