@@ -1,28 +1,32 @@
-import React, { Suspense, useState, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
-import Login from "./components/Login/Login";
 
+const Login = lazy(() => import("./components/Login/Login"));
 const TheLayout = lazy(() => import("./Layout/TheLayout"));
 
 const App = () => {
   const [auth, setAuth] = useState(false);
 
-  const authVerification = (data) => {
-    sessionStorage.setItem("isLoggedIn", data);
-    setAuth(data);
-  };
-
-  useEffect(() => {
-    if (!sessionStorage.getItem("isLoggedIn")) {
-      sessionStorage.setItem("isLoggedIn", false);
+  const checkAuth = () => {
+    let isLoggedIn = JSON.parse(sessionStorage.getItem("isLoggedIn"));
+    let token = JSON.parse(sessionStorage.getItem("token"));
+    if (isLoggedIn && token) {
+      setAuth(true);
     }
-  }, []);
+  };
+  console.log("rerender app.js");
+  useEffect(() => {
+    if (!JSON.parse(sessionStorage.getItem("isLoggedIn"))) {
+      sessionStorage.setItem("isLoggedIn", JSON.stringify(false));
+    }
+  }, [auth]);
+
   return (
     <div>
       <BrowserRouter basename="/admin">
         <Suspense fallback="loading app.js.....">
           <Switch>
-            {auth === false ? (
+            {auth === true || checkAuth() ? (
               <Route path="/" name="Layout" render={() => <TheLayout />} />
             ) : (
               <>
@@ -32,7 +36,7 @@ const App = () => {
                   exact
                   name="Login"
                   render={(props) => (
-                    <Login authVerification={authVerification} {...props} />
+                    <Login {...props} authVerification={checkAuth} />
                   )}
                 />
               </>

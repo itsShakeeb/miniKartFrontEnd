@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { nav } from "../nav";
 const TheSidebar = () => {
   return (
@@ -8,9 +8,13 @@ const TheSidebar = () => {
       {nav.map((item, index) => {
         return (
           <div className="d-flex mb-2" key={index}>
-            <Link to={item.path} className="sidebar-nav-link">
+            <NavLink
+              to={item.path}
+              className="sidebar-nav-link"
+              activeClassName="sidebar-nav-link-active"
+            >
               {item.title}
-            </Link>
+            </NavLink>
           </div>
         );
       })}

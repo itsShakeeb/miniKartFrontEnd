@@ -11,4 +11,8 @@ export const nav = [
     title: "Users",
     path: "/users",
   },
+  {
+    title: "Category",
+    path: "/category",
+  },
 ];

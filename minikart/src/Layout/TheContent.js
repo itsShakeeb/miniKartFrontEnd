@@ -6,7 +6,7 @@ import routes from "../routes";
 const TheContent = () => {
   return (
     <div>
-      <Suspense fallback="loading theContent.js...">
+      <Suspense fallback="loading...">
         <Switch>
           {routes.map((route, index) => {
             return (
